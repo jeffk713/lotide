@@ -6,13 +6,15 @@ const assertEqual = function (actual, expected) {
 };
 
 const findKey = (obj, cb) => {
-  let nameToReturn = '';
+  let nameToReturn;
+
   for (const name in obj) {
     if (cb(obj[name])) {
       nameToReturn = name;
       break;
     }
   }
+  
   return nameToReturn;
 };
 

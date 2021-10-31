@@ -40,6 +40,8 @@ const eqObjects = function (object1, object2) {
       }
 
       //when values are primitive
+    } else if (typeof object1[key] === 'object') {
+      return eqObjects(object1[key], object2[key]);
     } else {
       if (object1[key] !== object2[key]) {
         testPass = false;
@@ -55,4 +57,12 @@ const dc = { d: ['2', 3], c: '1' };
 assertEqual(eqObjects(cd, dc), true); // => true
 
 const cd2 = { c: '1', d: ['2', 3, 4] };
-assertEqual(eqObjects(cd, cd2), true); // => false
+assertEqual(eqObjects(cd, cd2), false); // => false
+
+assertEqual(eqObjects({ a: { z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 }), true); // => true
+
+assertEqual(
+  eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 }),
+  false
+); // => false
+assertEqual(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: 1, b: 2 }), false); // => false
