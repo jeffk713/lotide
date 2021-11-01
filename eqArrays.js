@@ -1,10 +1,3 @@
-const assertEqual = function (actual, expected) {
-  if (actual === expected)
-    return console.log(`✅✅✅Assertion passes: ${actual} === ${expected}`);
-
-  return console.log(`💩💩💩Assertion fails: ${actual} !== ${expected}`);
-};
-
 const eqArrays = (arr1, arr2) => {
   let result = true;
   arr1.forEach((num, i) => {
@@ -20,4 +13,4 @@ const eqArrays = (arr1, arr2) => {
 // console.log(eqArrays(['1', '2', '3'], ['1', '2', '3'])); // => true
 // console.log(eqArrays(['1', '2', '3'], ['1', '2', 3])); // => false
 
-assertEqual(eqArrays([1, 2, 3], [1, 2, 3]), true);
+module.exports = eqArrays;
